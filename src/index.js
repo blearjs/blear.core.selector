@@ -374,26 +374,26 @@ exports.filter = function (nodeList, filter) {
 };
 
 
-/**
- * 判断上下文是否存在某元素
- * @param el {Element} 元素
- * @param context {Object|String} 上下文
- * @returns {boolean}
- */
-exports.has = function (el, context) {
-    context = context || doc;
-
-    if (el === context) {
-        return true;
-    }
-
-    var className = 'q' + random.guid();
-
-    classList.add(el, className);
-
-    var list = query('.' + className, context);
-
-    classList.remove(el, className);
-
-    return list.length > 0;
-};
+// /**
+//  * 判断上下文是否存在某元素
+//  * @param el {Element} 元素
+//  * @param context {Object|String} 上下文
+//  * @returns {boolean}
+//  */
+// exports.has = function (el, context) {
+//     context = context || doc;
+//
+//     if (el === context) {
+//         return true;
+//     }
+//
+//     var className = 'q' + random.guid();
+//
+//     classList.add(el, className);
+//
+//     var list = query('.' + className, context);
+//
+//     classList.remove(el, className);
+//
+//     return list.length > 0;
+// };

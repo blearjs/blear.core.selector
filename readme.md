@@ -5,42 +5,62 @@
 [travis-img]: https://travis-ci.org/blearjs/blear.core.selector.svg?branch=master
 [travis-url]: https://travis-ci.org/blearjs/blear.core.selector
 
-
-## `#emit(eventName, [arg, ...])`
-发送事件。多个事件名，使用空格分开。如果接收事件有返回 false，则返回值为 false。
-```
-var events = new Events();
-
-var preventDefault = events.emit('myEvent', 1, 2, 3) === false;
-```
-
-## `#on(eventName, function)`
-监听事件。多个事件名，使用空格分开。
-
-```
-events.on('myEvents', function (a, b, c) {
-    // a === 1
-    // b === 2
-    // c === 3
-    
-    return false;
-});
-```
+## `.query(selector<String,Node>, [context<Node>])`
+在上下文里根据元素选择器查找元素，返回数组。
 
 
-## `#un([eventName], [function])`
-取消事件监听。如果 function 为空，则取消所有该事件监听。如果都为空，则取消所有事件。
-```
-events.un('myEvent', fn1);
-events.un('myEvent');
-events.un();
-```
+## `.contains(childEl, parentEl)`
+判断 childEl 是否被 parentEl 包含。
+
+
+## `.siblings(el)`
+返回 el 元素的兄弟元素数组。
+
+
+## `.index(el)`
+返回 el 元素在兄弟元素中的索引值。
+
+
+## `.prev(el)`
+返回 el 元素的前面的一个元素数组。
+
+
+## `.next(el)`
+返回 el 元素的后面的一个元素数组。
+
+
+## `.prevAll(el)`
+返回 el 元素的前面的所有元素数组。
+
+
+## `.nextAll(el)`
+返回 el 元素的后面的所有元素数组。
 
 
 
-## `#once(eventName, function)`
-只监听一次。
+## `.closest(el, selector)`
+从 el 元素本身开始获得最近匹配的祖先元素数组。
 
-```
-events.once('myEvent', fn1);
-```
+
+## `.parent(el)`
+返回 el 元素的父级元素数组。
+
+
+## `.children(el)`
+返回 el 元素的子级元素数组。
+
+
+## `.contents(el)`
+返回 el 元素的子节点数组。
+
+
+
+## `.isMatched(el, sel)`
+判断元素是否匹配选择器。
+
+
+## `.filter(nodeList, filter)`
+根据 filter 函数过滤 nodeList （类）数组
+
+
+

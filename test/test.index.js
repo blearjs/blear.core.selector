@@ -236,18 +236,18 @@ describe('测试文件', function () {
 
     });
 
-    it('.has', function () {
-        var oDiv1 = doc.createElement('div');
-        oDiv1.setAttribute('id', 'slide1');
-        oDiv1.innerHTML = '<p>0</p><p>1</p><p id="p2">2</p><p>3</p><p>4</p>';
-        doc.body.appendChild(oDiv1);
-        var p1 = selector.query('p', oDiv1)[1];
-
-        expect(selector.has(p1, oDiv1)).toEqual(true);
-        expect(selector.has(p1, '#slide1')).toEqual(true);
-        expect(selector.has(p1,p1)).toEqual(true);
-
-        doc.body.removeChild(oDiv1);
-
-    });
+    // it('.has', function () {
+    //     var oDiv1 = doc.createElement('div');
+    //     oDiv1.setAttribute('id', 'slide1');
+    //     oDiv1.innerHTML = '<p>0</p><p>1</p><p id="p2">2</p><p>3</p><p>4</p>';
+    //     doc.body.appendChild(oDiv1);
+    //     var p1 = selector.query('p', oDiv1)[1];
+    //
+    //     expect(selector.has(p1, oDiv1)).toEqual(true);
+    //     expect(selector.has(p1, '#slide1')).toEqual(true);
+    //     expect(selector.has(p1,p1)).toEqual(true);
+    //
+    //     doc.body.removeChild(oDiv1);
+    //
+    // });
 });
