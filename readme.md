@@ -1,9 +1,19 @@
 # blear.core.selector
 
-[![Build Status][travis-img]][travis-url] 
+[![npm module][npm-img]][npm-url]
+[![build status][travis-img]][travis-url]
+[![coverage][coveralls-img]][coveralls-url]
 
-[travis-img]: https://travis-ci.org/blearjs/blear.core.selector.svg?branch=master
+[travis-img]: https://img.shields.io/travis/blearjs/blear.core.selector/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/blearjs/blear.core.selector
+
+[npm-img]: https://img.shields.io/npm/v/blear.core.selector.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/blear.core.selector
+
+[coveralls-img]: https://img.shields.io/coveralls/blearjs/blear.core.selector/master.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/blearjs/blear.core.selector?branch=master
+
+
 
 ## `.query(selector<String,Node>, [context<Node>])`
 在上下文里根据元素选择器查找元素，返回数组。
