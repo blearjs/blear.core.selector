@@ -9,13 +9,13 @@
 
 'use strict';
 
-                require('blear.polyfills.string');
-var sibling =   require('blear.polyfills.sibling');
-var selector =  require('blear.polyfills.selector');
+require('blear.polyfills.string');
+var sibling = require('blear.polyfills.sibling');
+var selector = require('blear.polyfills.selector');
 var classList = require('blear.polyfills.class-list');
-var array =     require('blear.utils.array');
-var typeis =    require('blear.utils.typeis');
-var random =    require('blear.utils.random');
+var array = require('blear.utils.array');
+var typeis = require('blear.utils.typeis');
+var random = require('blear.utils.random');
 
 var win = window;
 var doc = win.document;
@@ -252,36 +252,39 @@ exports.nextAll = function (el) {
 /**
  * 从元素本身开始获得最近匹配的祖先元素
  * @param {Object} el 元素
- * @param {String|Object} selector 选择器
+ * @param {String|Object} sel 选择器
+ * @param {HTMLElement} rootEl 根元素，默认是 document
  * @returns {Array}
  *
  * @example
  * selector.closest(ele, 'div');
  * // => [div];
  */
-exports.closest = function (el, selector) {
+exports.closest = function (el, sel, rootEl) {
     if (!el || !el.nodeType) {
         return [];
     }
 
-    if (typeis.String(selector)) {
-        while (!typeis.Document(el) && typeis.Element(el)) {
-            if (isMatched(el, selector)) {
-                return array.from([el]);
+    rootEl = rootEl || doc;
+
+    if (typeis.String(sel)) {
+        while (el !== rootEl && typeis.Element(el)) {
+            if (isMatched(el, sel)) {
+                return [el];
             }
 
             el = getParent(el)[0];
         }
-    } else if (typeis.Element(selector)) {
-        while (!typeis.Document(el) && el) {
-            if (el === selector) {
-                return array.from([el]);
+    } else if (typeis.Element(sel)) {
+        while (el && el !== rootEl) {
+            if (el === sel) {
+                return [el];
             }
 
             el = getParent(el)[0];
         }
-    } else if (typeis.Window(selector) || typeis.Document(selector)) {
-        return [selector];
+    } else if (typeis.Window(sel) || typeis.Document(sel)) {
+        return [sel];
     }
 
     return [];
