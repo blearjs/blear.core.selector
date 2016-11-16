@@ -253,7 +253,7 @@ exports.nextAll = function (el) {
  * 从元素本身开始获得最近匹配的祖先元素
  * @param {Object} el 元素
  * @param {String|Object} sel 选择器
- * @param {HTMLElement} rootEl 根元素，默认是 document
+ * @param {HTMLElement} [rootEl] 根元素，默认是 document
  * @returns {Array}
  *
  * @example
