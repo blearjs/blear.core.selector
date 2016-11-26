@@ -40,6 +40,8 @@
     "blear.polyfills.string": "1.x",
     "blear.polyfills.selector": "1.x",
     "blear.utils.array": "1.x",
+    "blear.utils.compatible": "1.x",
+    "blear.utils.debug": "1.x",
     "blear.utils.typeis": "1.x"
   },
   "devDependencies": {

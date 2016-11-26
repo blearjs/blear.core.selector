@@ -13,10 +13,12 @@ require('blear.polyfills.string');
 var selector = require('blear.polyfills.selector');
 var array = require('blear.utils.array');
 var typeis = require('blear.utils.typeis');
+var compatible = require('blear.utils.compatible');
+var debug = require('blear.utils.debug');
 
 var win = window;
 var doc = win.document;
-
+var matchesSelector = compatible.js('matchesSelector', doc.body);
 
 /**
  * 在上下文中查找DOM元素，永远返回一个数组
@@ -164,7 +166,7 @@ exports.prev = function (el) {
         return [];
     }
 
-    return [selector.prevElement(el)];
+    return [el.previousElementSibling];
 };
 
 
@@ -182,7 +184,7 @@ exports.next = function (el) {
         return [];
     }
 
-    return [selector.nextElement(el)];
+    return [el.nextElementSibling];
 };
 
 
@@ -266,7 +268,7 @@ exports.closest = function (el, sel, rootEl) {
 
     if (typeis.String(sel)) {
         while (el !== rootEl && typeis.Element(el)) {
-            if (isMatched(el, sel)) {
+            if (matches(el, sel)) {
                 return [el];
             }
 
@@ -349,12 +351,15 @@ exports.contents = function (el) {
  * @returns {Boolean}
  *
  * @example
- * selector.isMatched(ele, 'div');
+ * selector.matches(ele, 'div');
  * // => true OR false
  */
-var isMatched = exports.isMatched = function (el, sel) {
-    return selector.isMatched(el, sel);
+var matches = exports.matches = function (el, sel) {
+    return el[matchesSelector](sel);
 };
+
+
+exports.isMatched = debug.deprecate(matches, '请使用`selector.matches(el, sel)`代替');
 
 
 /**
