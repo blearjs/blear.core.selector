@@ -10,12 +10,9 @@
 'use strict';
 
 require('blear.polyfills.string');
-var sibling = require('blear.polyfills.sibling');
 var selector = require('blear.polyfills.selector');
-var classList = require('blear.polyfills.class-list');
 var array = require('blear.utils.array');
 var typeis = require('blear.utils.typeis');
-var random = require('blear.utils.random');
 
 var win = window;
 var doc = win.document;
@@ -167,7 +164,7 @@ exports.prev = function (el) {
         return [];
     }
 
-    return [sibling.prevElement(el)];
+    return [selector.prevElement(el)];
 };
 
 
@@ -185,7 +182,7 @@ exports.next = function (el) {
         return [];
     }
 
-    return [sibling.nextElement(el)];
+    return [selector.nextElement(el)];
 };
 
 
