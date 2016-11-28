@@ -9,7 +9,6 @@
 
 'use strict';
 
-require('blear.polyfills.string');
 var selector = require('blear.polyfills.selector');
 var array = require('blear.utils.array');
 var typeis = require('blear.utils.typeis');

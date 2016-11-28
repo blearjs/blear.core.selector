@@ -1,6 +1,6 @@
 {
   "name": "blear.core.selector",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "DOM 选择器",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",
@@ -37,8 +37,6 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "blear.polyfills.string": "1.x",
-    "blear.polyfills.selector": "1.x",
     "blear.utils.array": "1.x",
     "blear.utils.compatible": "1.x",
     "blear.utils.debug": "1.x",
