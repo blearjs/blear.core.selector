@@ -9,7 +9,6 @@
 
 'use strict';
 
-var selector = require('blear.polyfills.selector');
 var array = require('blear.utils.array');
 var typeis = require('blear.utils.typeis');
 var compatible = require('blear.utils.compatible');
@@ -31,14 +30,14 @@ var matchesSelector = compatible.js('matchesSelector', doc.body);
  * selector.query('div');
  * // => [div, div, ...]
  */
-var query = exports.query = function (selector, context) {
+var query = exports.query = function (sel, context) {
     context = context || doc;
-    var selectorType = typeis(selector);
+    var selectorType = typeis(sel);
 
     switch (selectorType) {
         case 'window':
         case 'document':
-            return [selector];
+            return [sel];
     }
 
     //判断context的类型
@@ -66,10 +65,10 @@ var query = exports.query = function (selector, context) {
     array.each(contextRet, function (i, context) {
         switch (selectorType) {
             case 'string':
-                selector = selector.trim();
-                if (selector) {
+                sel = sel.trim();
+                if (sel) {
                     try {
-                        push.apply(ret, array.from(context.querySelectorAll(selector)));
+                        push.apply(ret, array.from(context.querySelectorAll(sel)));
                     } catch (err) {
                         // ignore
                     }
@@ -77,8 +76,8 @@ var query = exports.query = function (selector, context) {
                 break;
 
             case 'element':
-                if (contains(selector, context)) {
-                    push.call(ret, selector);
+                if (contains(sel, context)) {
+                    push.call(ret, sel);
                 }
                 break;
         }
