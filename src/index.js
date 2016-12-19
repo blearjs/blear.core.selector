@@ -20,7 +20,7 @@ var matchesSelector = compatible.js('matchesSelector', doc.body);
 
 /**
  * 在上下文中查找DOM元素，永远返回一个数组
- * @param {String|Object}  selector  选择器
+ * @param {String|Object}  sel  选择器
  * @param {Object|String} [context=document] 上下文
  * @return {Array}
  *
@@ -30,7 +30,7 @@ var matchesSelector = compatible.js('matchesSelector', doc.body);
  * selector.query('div');
  * // => [div, div, ...]
  */
-var query = exports.query = function (sel, context) {
+exports.query = function (sel, context) {
     context = context || doc;
     var selectorType = typeis(sel);
 
@@ -88,7 +88,7 @@ var query = exports.query = function (sel, context) {
 
 /**
  * 判断元素是否包含关系
- * @param childEl {Object} 子元素
+ * @param {Object} childEl 子元素
  * @param parentEl {Object} 父元素
  * @returns {Boolean}
  */
