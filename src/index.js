@@ -80,6 +80,16 @@ exports.query = function (sel, context) {
                     push.call(ret, sel);
                 }
                 break;
+
+            default:
+                if (isElmentList(sel)) {
+                    try {
+                        push.apply(ret, array.from(sel));
+                    } catch (err) {
+                        // ignore
+                    }
+                }
+                break;
         }
     });
 
@@ -400,3 +410,15 @@ exports.filter = function (nodeList, filter) {
 //
 //     return list.length > 0;
 // };
+
+
+function isElmentList(list) {
+    var is = true;
+    array.each(list, function (index, el) {
+        if (!typeis.Element(el)) {
+            is = false;
+            return false;
+        }
+    });
+    return is;
+}

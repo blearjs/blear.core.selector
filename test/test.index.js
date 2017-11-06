@@ -20,22 +20,24 @@ describe('测试文件', function () {
         doc.body.appendChild(oDiv);
         //selector:ele,context:ele
         var selEle1 = selector.query(oDiv, doc);
-        //expect(selEle1[0]).toEqual(oDiv);
-        //
-        ////selector:string,context:ele
-        //var selEle2 = selector.query('p','#slide1');
-        //console.log(selEle2)
-        //expect(selEle2.length).toEqual(3);
-        //for(var i=0;i<selEle2.length;i++){
-        //    expect(selEle2[i]).toEqual(oDiv.childNodes[i]);
-        //}
-        //
-        ////selector:string,context:ele
-        //var selEle3 = selector.query('p',oDiv);
-        //expect(selEle3.length).toEqual(3);
-        //for(var i=0;i<selEle3.length;i++){
-        //    expect(selEle3[i]).toEqual(oDiv.childNodes[i]);
-        //}
+        var selEle11 = selector.query(selEle1, doc);
+        expect(selEle1[0]).toEqual(oDiv);
+        expect(selEle11[0]).toEqual(oDiv);
+
+        //selector:string,context:ele
+        var selEle2 = selector.query('p','#slide1');
+        console.log(selEle2)
+        expect(selEle2.length).toEqual(3);
+        for(var i=0;i<selEle2.length;i++){
+           expect(selEle2[i]).toEqual(oDiv.childNodes[i]);
+        }
+
+        //selector:string,context:ele
+        var selEle3 = selector.query('p',oDiv);
+        expect(selEle3.length).toEqual(3);
+        for(var i=0;i<selEle3.length;i++){
+           expect(selEle3[i]).toEqual(oDiv.childNodes[i]);
+        }
 
         doc.body.removeChild(oDiv);
     });
