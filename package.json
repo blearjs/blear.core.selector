@@ -1,6 +1,6 @@
 {
   "name": "blear.core.selector",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "DOM 选择器",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",

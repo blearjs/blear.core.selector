@@ -38,6 +38,11 @@ exports.query = function (sel, context) {
         case 'window':
         case 'document':
             return [sel];
+
+        default:
+            if (isElmentList(sel)) {
+                return array.from(sel);
+            }
     }
 
     //判断context的类型
@@ -78,16 +83,6 @@ exports.query = function (sel, context) {
             case 'element':
                 if (contains(sel, context)) {
                     push.call(ret, sel);
-                }
-                break;
-
-            default:
-                if (isElmentList(sel)) {
-                    try {
-                        push.apply(ret, array.from(sel));
-                    } catch (err) {
-                        // ignore
-                    }
                 }
                 break;
         }
@@ -414,11 +409,16 @@ exports.filter = function (nodeList, filter) {
 
 function isElmentList(list) {
     var is = true;
-    array.each(list, function (index, el) {
-        if (!typeis.Element(el)) {
-            is = false;
-            return false;
-        }
-    });
+    try {
+        array.each(list, function (index, el) {
+            if (!typeis.Element(el)) {
+                is = false;
+                return false;
+            }
+        });
+    } catch (err) {
+        return false;
+    }
+
     return is;
 }
