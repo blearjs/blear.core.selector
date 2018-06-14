@@ -150,7 +150,7 @@ describe('测试文件', function () {
         var oDiv2 = doc.createElement('div');
         oDiv2.setAttribute('id', 'slide2');
 
-        oDiv1.innerHTML = '<p>0</p><p>1</p><p id="p2">2</p><p>3</p><p>4</p>';
+        oDiv1.innerHTML = '<div><p>0</p><p>1</p><p id="p2">2</p><p>3</p><p>4</p></div>';
         doc.body.appendChild(oDiv1);
         doc.body.appendChild(oDiv2);
 
@@ -158,11 +158,15 @@ describe('测试文件', function () {
         var p2Parent_ele = selector.closest(p2, oDiv1);
         var p2Parent_str = selector.closest(p2, '#slide1');
         var p2Parent_empty = selector.closest(p2, '#slide2');
+        var p2ParentDiv = selector.closest(p2, function (el) {
+            return el.tagName === 'DIV';
+        });
 
         expect(p2Parent_ele[0]).toEqual(oDiv1);
         expect(p2Parent_str[0]).toEqual(oDiv1);
         expect(p2Parent_empty.length).toEqual(0);
         expect(selector.closest().length).toEqual(0);
+        expect(p2ParentDiv[0]).toBe(oDiv1.firstElementChild);
 
         doc.body.removeChild(oDiv1);
     });

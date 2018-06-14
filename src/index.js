@@ -252,9 +252,9 @@ exports.nextAll = function (el) {
 
 
 /**
- * 从元素本身开始获得最近匹配的祖先元素
+ * 从元素本身开始获得最近匹配规则的祖先元素
  * @param {Object} el 元素
- * @param {String|Object} sel 选择器
+ * @param {String|Object|Function} sel 选择器
  * @param {HTMLElement} [rootEl] 根元素，默认是 document
  * @returns {Array}
  *
@@ -269,24 +269,37 @@ exports.closest = function (el, sel, rootEl) {
 
     rootEl = rootEl || doc;
 
-    if (typeis.String(sel)) {
-        while (el !== rootEl && typeis.Element(el)) {
-            if (matches(el, sel)) {
-                return [el];
-            }
-
-            el = getParent(el)[0];
-        }
-    } else if (typeis.Element(sel)) {
-        while (el && el !== rootEl) {
-            if (el === sel) {
-                return [el];
-            }
-
-            el = getParent(el)[0];
-        }
-    } else if (typeis.Window(sel) || typeis.Document(sel)) {
+    if (typeis.Window(sel) || typeis.Document(sel)) {
         return [sel];
+    }
+
+    var match = function () {
+        return false;
+    };
+    switch (typeis(sel)) {
+        case 'string':
+            match = function (el) {
+                return matches(el, sel);
+            };
+            break;
+
+        case 'element':
+            match = function (el) {
+                return el === sel;
+            };
+            break;
+
+        case 'function':
+            match = sel;
+            break;
+    }
+
+    while (el !== rootEl && typeis.Element(el)) {
+        if (match(el, sel)) {
+            return [el];
+        }
+
+        el = getParent(el)[0];
     }
 
     return [];
